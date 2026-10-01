@@ -86,3 +86,7 @@ After initial loading, route changes use local templates. Uncached images can fa
 ## Color accessibility
 
 CSS uses shared theme tokens and `prefers-color-scheme: dark` to follow the operating system theme. Text, links, input surfaces, and feedback receive theme-specific colors. Focus outlines remain visible, while errors also use text messages. `forced-colors` respects the operating system palette. Selected text/background pairs are checked for 4.5:1 contrast; this is not a complete WCAG audit.
+
+## Deployment pipeline
+
+`.github/workflows/pages.yml` prepares GitHub Actions validation for pull requests to `main` and `develop`. It installs dependencies and Chromium, builds `dist/`, and tests production output. Successful pushes to `main` upload the site artifact and deploy through GitHub Pages. Publication is pending: the repository is private and its owner currently uses GitHub Free, which does not support Pages for private repositories. Public visibility or an eligible paid plan is required before enabling Pages. No production URL has been verified.
