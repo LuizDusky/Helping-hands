@@ -1,7 +1,7 @@
 const {chromium}=require('playwright');const assert=require('node:assert/strict');
 (async()=>{const browser=await chromium.launch();const context=await browser.newContext();const page=await context.newPage();const errors=[],requests=[],failures=[];
 page.on('pageerror',e=>errors.push(e.message));page.on('console',m=>{if(m.type()==='error')errors.push(m.text())});page.on('request',r=>requests.push({url:r.url(),type:r.resourceType()}));page.on('response',r=>{if(r.status()>=400)failures.push(r.url())});
-await page.goto('http://127.0.0.1:8765/html/registration.html');
+await page.goto(`${process.env.TEST_BASE_URL || 'http://127.0.0.1:8765'}/html/registration.html`);
 await page.locator('[type=submit]').click();assert.equal(await page.locator('.is-invalid').count(),9);
 for(const [id,value] of Object.entries({fullname:'Alice Example',birthdate:'2000-02-29',CPF:'12345678901',email:'alice@example.com',phonenumber:'84999999999',address:'Example Street',city:'Natal',state:'RN',zipcode:'59000000'}))await page.locator('#'+id).fill(value);
 await page.locator('#birthdate').fill('2999-01-01');assert.match(await page.locator('#birthdate-error').innerText(),/future/);

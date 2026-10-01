@@ -46,7 +46,15 @@ The repository is private, so cloning requires an authorized GitHub account. Kee
 
 ## Build and deployment
 
-This project consists of static HTML, CSS, JavaScript, and images. There is no compilation or bundling step and no `npm run build` command. Serve the root `index.html` together with `html/`, `css/`, `images/`, and `js/`, preserving relative paths. Do not deploy `node_modules/`, `.git/`, or browser test artifacts. No backend or remote registration service is configured.
+Run `npm run build` to generate `dist/`. The build bundles the application scripts with esbuild in their dependency order and minifies JavaScript, CSS, and HTML (using html-minifier-terser). Day.js files and their license are copied unchanged, as are images. Source files are preserved.
+
+Deploy the contents of `dist/`, preserving relative paths. Raw HTML/CSS/JavaScript byte reductions are recorded in `dist/build-report.json`; these exclude images, third-party code, compression, and the report itself. There is no backend.
+
+To test production output, serve `dist/` on port 8766 and run `TEST_BASE_URL=http://127.0.0.1:8766 npm test`:
+
+```sh
+python3 -m http.server 8766 --bind 127.0.0.1 --directory dist
+```
 
 ## Browser tests
 
