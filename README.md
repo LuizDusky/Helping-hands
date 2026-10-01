@@ -42,7 +42,7 @@ npx playwright install chromium
 python3 -m http.server 8765 --bind 127.0.0.1
 ```
 
-The repository is private, so cloning requires an authorized GitHub account. Keep the server terminal open and visit `http://127.0.0.1:8765/html/index.html`. After the PR is merged, use `develop` for integrated development. Node.js dependencies are only needed for tests.
+The repository is public. Keep the server terminal open and visit `http://127.0.0.1:8765/html/index.html`. After the PR is merged, use `develop` for integrated development. Node.js dependencies are only needed for tests.
 
 ## Build and deployment
 
@@ -89,4 +89,4 @@ CSS uses shared theme tokens and `prefers-color-scheme: dark` to follow the oper
 
 ## Deployment pipeline
 
-`.github/workflows/pages.yml` prepares GitHub Actions validation for pull requests to `main` and `develop`. It installs dependencies and Chromium, builds `dist/`, and tests production output. Successful pushes to `main` upload the site artifact and deploy through GitHub Pages. Publication is pending: the repository is private and its owner currently uses GitHub Free, which does not support Pages for private repositories. Public visibility or an eligible paid plan is required before enabling Pages. No production URL has been verified.
+`.github/workflows/pages.yml` prepares GitHub Actions validation for pull requests to `main` and `develop`. It installs dependencies and Chromium, builds `dist/`, and tests production output. Successful pushes to `main` upload the site artifact and deploy through GitHub Pages. The repository is public and Pages is enabled for GitHub Actions. The production address is `https://luizdusky.github.io/Helping-hands/`; deployment runs from `main` after validation.
