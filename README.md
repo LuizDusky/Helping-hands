@@ -12,3 +12,7 @@ HTML references styles, images, and scripts through relative paths. JavaScript s
 ## Date library
 
 Day.js 1.11.13 (MIT) is vendored in `js/vendor/dayjs/` with its license and CustomParseFormat plugin. Deferred scripts load the library, plugin, and `datas.js` adapter before application scripts. Strict YYYY-MM-DD parsing rejects impossible birth dates; day comparison rejects future birth dates. Validation runs on input and submit.
+
+## Version control
+
+See [GITFLOW.md](GITFLOW.md) for branch responsibilities and the versioned workflow.
