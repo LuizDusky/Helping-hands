@@ -602,3 +602,48 @@ input[type="submit"]:disabled {
 .form-feedback.feedback-success { color: #166534; }
 
 .field-error { display: block; color: #b42318; margin-top: .25rem; }
+
+/* Theme tokens keep text, surfaces, and validation colors consistent. */
+:root {
+    color-scheme: light;
+    --surface: #ffffff;
+    --link: #14532d;
+    --feedback-error: #b42318;
+    --feedback-success: #166534;
+    --focus: #92400e;
+}
+a { color: var(--link); }
+.project-card, .submenu { background-color: var(--surface); }
+input, select, textarea { background-color: var(--surface); color: var(--color-text); }
+button, input[type="submit"], .button { color: #ffffff; }
+.form-feedback, .field-error { color: var(--feedback-error); }
+.form-feedback.feedback-success { color: var(--feedback-success); }
+#registration-form input.is-invalid { border-color: var(--feedback-error); }
+a:focus-visible, button:focus-visible, input:focus-visible,
+select:focus-visible, textarea:focus-visible {
+    outline: 3px solid var(--focus);
+    outline-offset: 3px;
+}
+@media (prefers-color-scheme: dark) {
+    :root {
+        color-scheme: dark;
+        --color-background: #111827;
+        --color-text: #f9fafb;
+        --color-text-light: #d1d5db;
+        --color-border: #9ca3af;
+        --surface: #1f2937;
+        --link: #86efac;
+        --feedback-error: #fca5a5;
+        --feedback-success: #86efac;
+        --focus: #fcd34d;
+    }
+    .badge-error, .alert-error { color: #b91c1c; }
+    .toast { background-color: #1f2937; color: #f9fafb; }
+    .toast-close { color: #f9fafb; }
+}
+/* Let the operating system provide its forced-color palette. */
+@media (forced-colors: active) {
+    a:focus-visible, button:focus-visible, input:focus-visible,
+    select:focus-visible, textarea:focus-visible { outline-color: Highlight; }
+    #registration-form input.is-invalid { border-style: dashed; }
+}

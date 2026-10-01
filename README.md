@@ -74,3 +74,7 @@ Use Conventional Commit messages such as `docs: describe local setup`, `test: co
 Validated registration fields are saved under `helpingHands.registration` and restored whenever the registration view is newly rendered. Records stay in this browser and origin; there is no server synchronization. Storage access errors and malformed JSON are handled without interrupting navigation.
 
 After initial loading, route changes use local templates. Uncached images can fail offline. No service worker is installed, so fresh offline loads or reloads are not guaranteed. Browser regression coverage currently includes Chromium; Safari and Firefox have not been verified.
+
+## Color accessibility
+
+CSS uses shared theme tokens and `prefers-color-scheme: dark` to follow the operating system theme. Text, links, input surfaces, and feedback receive theme-specific colors. Focus outlines remain visible, while errors also use text messages. `forced-colors` respects the operating system palette. Selected text/background pairs are checked for 4.5:1 contrast; this is not a complete WCAG audit.
