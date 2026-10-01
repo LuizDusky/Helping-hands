@@ -1,18 +1,92 @@
 # Helping Hands
 
-Open `html/index.html` to view the website. The root `index.html` redirects to that entry point.
+## Project overview
 
-- `html/`: Home, projects, and registration page markup.
-- `css/`: Shared styles in `style.css`.
-- `images/`: Volunteer photographs in JPEG and WebP formats.
-- `js/`: SPA initialization in `app.js`, routing in `navegacao.js`, and local templates in `templates.js`.
+Helping Hands is an educational front-end SPA for a nonprofit organization. Visitors can explore social projects and complete a volunteer registration form. Hash routing updates the main content without reloading the document.
 
-HTML references styles, images, and scripts through relative paths. JavaScript stays outside the markup. Hash routes (`#/home`, `#/projects`, `#/registration`) update the `#app` container without reloading the document. Browser Back/Forward is supported. Validated registration fields are saved locally in `helpingHands.registration` and restored when the registration view is rendered. Storage access errors do not interrupt navigation.
+## Technologies and features
 
-## Date library
+- HTML5 and CSS3: semantic markup, responsive layouts, navigation, and feedback styles.
+- Vanilla JavaScript: DOM updates, reusable template literals, delegated events, and hash routing with Back/Forward support.
+- localStorage and JSON: persist the latest validated registration in this browser.
+- Day.js 1.11.13 and CustomParseFormat: strict birth-date validation and future-date rejection. The MIT-licensed files are included locally in `js/vendor/dayjs/`.
+- Playwright: development-only browser regression tests in headless Chromium.
+- Git and GitHub: branch history, annotated tags, issues, milestones, and pull requests.
 
-Day.js 1.11.13 (MIT) is vendored in `js/vendor/dayjs/` with its license and CustomParseFormat plugin. Deferred scripts load the library, plugin, and `datas.js` adapter before application scripts. Strict YYYY-MM-DD parsing rejects impossible birth dates; day comparison rejects future birth dates. Validation runs on input and submit.
+## Directory structure
 
-## Version control
+```text
+html/       Home, projects, and registration markup
+css/        Shared styling in style.css
+images/     JPEG and WebP photographs
+js/         Application scripts and local third-party library
+tests/     Browser regression and navigation scripts
+```
 
-See [GITFLOW.md](GITFLOW.md) for branch responsibilities and the versioned workflow.
+`app.js` initializes the application; `templates.js` generates content; `navegacao.js` routes views; `eventos.js` handles interactions and validation; `armazenamento.js` manages persistence; `datas.js` adapts Day.js. Deferred scripts load in dependency order. The root `index.html` redirects to `html/index.html`.
+
+## Prerequisites
+
+A modern browser and Python 3 are sufficient to serve the application. Git is required to clone the repository. Automated tests additionally require Node.js/npm compatible with the pinned Playwright dependency and its Chromium installation. Initial dependency and browser downloads require internet access; the application has no runtime CDN dependency.
+
+## Local installation and execution
+
+Clone the repository, then check out the branch containing the test setup. While PR #3 remains open, use its feature branch:
+
+```sh
+git clone https://github.com/LuizDusky/Helping-hands.git
+cd Helping-hands
+git switch feature/reproducible-browser-tests
+npm ci
+npx playwright install chromium
+python3 -m http.server 8765 --bind 127.0.0.1
+```
+
+The repository is public. Keep the server terminal open and visit `http://127.0.0.1:8765/html/index.html`. After the PR is merged, use `develop` for integrated development. Node.js dependencies are only needed for tests.
+
+## Build and deployment
+
+Run `npm run build` to generate `dist/`. The build bundles the application scripts with esbuild in their dependency order and minifies JavaScript, CSS, and HTML (using html-minifier-terser). Day.js files and their license are copied unchanged, as are images. Source files are preserved.
+
+Deploy the contents of `dist/`, preserving relative paths. Raw HTML/CSS/JavaScript byte reductions are recorded in `dist/build-report.json`; these exclude images, third-party code, compression, and the report itself. There is no backend.
+
+To test production output, serve `dist/` on port 8766 and run `TEST_BASE_URL=http://127.0.0.1:8766 npm test`:
+
+```sh
+python3 -m http.server 8766 --bind 127.0.0.1 --directory dist
+```
+
+## Browser tests
+
+With the local server running, open another terminal in the project root:
+
+```sh
+npm test
+npm run test:navigation
+```
+
+`npm test` runs assertions for empty fields, malformed email, future birth dates, correction, localStorage restoration after reload, malformed JSON, blocked storage, offline routing, cards, and Back/Forward. It exits unsuccessfully if a check fails. The navigation script prints diagnostics for repeated clicks, whitespace-only input, and unknown routes.
+
+If the server is not running, tests fail with a connection-refused error. If Chromium is missing, run `npx playwright install chromium`. Stop the server with Ctrl+C after use.
+
+## Version control and collaboration
+
+GitFlow separates released snapshots in `main`, integration in `develop`, focused work in `feature/`, release preparation in `release/`, and future urgent corrections in `hotfix/`. See [GITFLOW.md](GITFLOW.md).
+
+Use Conventional Commit messages such as `docs: describe local setup`, `test: configure browser tests`, `feat: add functionality`, and `fix: correct behavior`. Versions follow MAJOR.MINOR.PATCH: breaking changes, compatible features, and compatible fixes respectively. The annotated tag `v1.0.0` identifies the first versioned delivery; see [CHANGELOG.md](CHANGELOG.md). Git history starts with the already implemented SPA baseline.
+
+[Issue #1](https://github.com/LuizDusky/Helping-hands/issues/1) tracks reproducible tests; [issue #2](https://github.com/LuizDusky/Helping-hands/issues/2) tracks offline documentation. Both belong to [milestone #1](https://github.com/LuizDusky/Helping-hands/milestone/1). [PR #3](https://github.com/LuizDusky/Helping-hands/pull/3) proposes their changes from the feature branch into `develop`; it was opened for review before merging.
+
+## Persistence and offline limits
+
+Validated registration fields are saved under `helpingHands.registration` and restored whenever the registration view is newly rendered. Records stay in this browser and origin; there is no server synchronization. Storage access errors and malformed JSON are handled without interrupting navigation.
+
+After initial loading, route changes use local templates. Uncached images can fail offline. No service worker is installed, so fresh offline loads or reloads are not guaranteed. Browser regression coverage currently includes Chromium; Safari and Firefox have not been verified.
+
+## Color accessibility
+
+CSS uses shared theme tokens and `prefers-color-scheme: dark` to follow the operating system theme. Text, links, input surfaces, and feedback receive theme-specific colors. Focus outlines remain visible, while errors also use text messages. `forced-colors` respects the operating system palette. Selected text/background pairs are checked for 4.5:1 contrast; this is not a complete WCAG audit.
+
+## Deployment pipeline
+
+`.github/workflows/pages.yml` prepares GitHub Actions validation for pull requests to `main` and `develop`. It installs dependencies and Chromium, builds `dist/`, and tests production output. Successful pushes to `main` upload the site artifact and deploy through GitHub Pages. The repository is public and Pages is enabled for GitHub Actions. The production address is `https://luizdusky.github.io/Helping-hands/`; deployment runs from `main` after validation.
