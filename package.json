@@ -1,0 +1,12 @@
+{
+  "name": "helping-hands",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "test": "node tests/browser-regression.cjs",
+    "test:navigation": "node tests/browser-navigation.cjs"
+  },
+  "devDependencies": {
+    "playwright": "1.63.0"
+  }
+}

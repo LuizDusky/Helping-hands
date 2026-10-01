@@ -16,3 +16,15 @@ Day.js 1.11.13 (MIT) is vendored in `js/vendor/dayjs/` with its license and Cust
 ## Version control
 
 See [GITFLOW.md](GITFLOW.md) for branch responsibilities and the versioned workflow.
+
+## Browser tests
+
+Requires Node.js/npm and Python 3. Install dependencies with `npm ci`, then install Chromium with `npx playwright install chromium`.
+
+Start `python3 -m http.server 8765 --bind 127.0.0.1` from the project root in another terminal. Run `npm test`; `npm run test:navigation` prints additional navigation diagnostics.
+
+The regression suite checks empty fields, email format, future dates, error correction, persistence after reload, malformed JSON, blocked storage, offline routing, and browser Back/Forward in headless Chromium.
+
+## Offline limits
+
+After initial loading, route changes use local templates without downloading a new document or application scripts. Uncached images may fail while offline. No service worker is installed, so a fresh offline load or reload is not guaranteed. Safari and Firefox have not been validated by this suite.
