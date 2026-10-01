@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Helping Hands - Sign Up</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <script src="../js/vendor/dayjs/dayjs.min.js" defer></script>
+    <script src="../js/vendor/dayjs/customParseFormat.js" defer></script>
+    <script src="../js/datas.js" defer></script>
+    <script src="../js/templates.js" defer></script>
+    <script src="../js/navegacao.js" defer></script>
+    <script src="../js/armazenamento.js" defer></script>
+    <script src="../js/eventos.js" defer></script>
+    <script src="../js/app.js" defer></script>
+</head>
+
+<body>
+    <header>
+        <h1>Helping Hands</h1>
+
+        <input type="checkbox" id="menu-toggle" class="menu-toggle">
+
+        <label for="menu-toggle" class="menu-icon" aria-label="Open navigation menu" aria-expanded="false">
+            ☰
+        </label>
+
+        <nav class="main-nav">
+            <a href="#/home">Home</a>
+
+            <div class="dropdown">
+                <a href="#/projects">Projects</a>
+
+                <div class="submenu">
+                    <a href="#/projects">Social Projects</a>
+                    <a href="#/projects">Volunteer Opportunities</a>
+                    <a href="#/projects">Donation Campaigns</a>
+                </div>
+            </div>
+
+            <a href="#/registration">Sign Up</a>
+        </nav>
+    </header>
+
+    <main class="container">
+        <div id="app" tabindex="-1">
+        <h2>Sign Up</h2>
+
+        <div class="alert alert-info" role="note">
+            Please complete all required fields before submitting your registration.
+        </div>
+
+        <div id="registration-info" class="toast toast-success" role="status" aria-live="polite">
+            <span>You're almost there! Complete the form to become a volunteer.</span>
+            <a class="toast-close" href="#registration-form" aria-label="Dismiss notification">×</a>
+        </div>
+
+        <form id="registration-form" novalidate>
+            <fieldset>
+                <legend>Personal Information</legend>
+
+                <div class="grid">
+                    <div class="form-group col-6">
+                        <label for="fullname">Full Name:</label>
+                        <input type="text" id="fullname" name="fullname" required>
+                    </div>
+
+                    <div class="form-group col-6">
+                        <label for="birthdate">Birth Date:</label>
+                        <input type="date" id="birthdate" name="birthdate" required>
+                    </div>
+
+                    <div class="form-group col-12">
+                        <label for="CPF">CPF:</label>
+                        <input type="text" id="CPF" name="CPF" inputmode="numeric" maxlength="11" pattern="\d{11}" title="Please enter 11 digits for CPF" required>
+                    </div>
+                </div>
+            </fieldset>
+
+            <fieldset>
+                <legend>Contact Information</legend>
+
+                <div class="grid">
+                    <div class="form-group col-6">
+                        <label for="email">Email:</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+
+                    <div class="form-group col-6">
+                        <label for="phonenumber">Phone Number:</label>
+                        <input type="tel" id="phonenumber" name="phonenumber" inputmode="numeric" maxlength="11" pattern="\d{11}" title="Please enter a valid phone number" required>
+                    </div>
+                </div>
+            </fieldset>
+
+            <fieldset>
+                <legend>Address Information</legend>
+
+                <div class="grid">
+                    <div class="form-group col-12">
+                        <label for="address">Address:</label>
+                        <input type="text" id="address" name="address" required>
+                    </div>
+
+                    <div class="form-group col-4">
+                        <label for="city">City:</label>
+                        <input type="text" id="city" name="city" required>
+                    </div>
+
+                    <div class="form-group col-4">
+                        <label for="state">State:</label>
+                        <input type="text" id="state" name="state" required>
+                    </div>
+
+                    <div class="form-group col-4">
+                        <label for="zipcode">Zip Code:</label>
+                        <input type="text" id="zipcode" name="zipcode" inputmode="numeric" maxlength="8" pattern="\d{8}" title="Please enter 8 digits for Zip Code" required>
+                    </div>
+                </div>
+            </fieldset>
+
+            <input type="submit" value="Register">
+        </form>
+            </div>
+    </main>
+</body>
+
+</html>

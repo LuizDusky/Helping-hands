@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Helping Hands</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <script src="../js/vendor/dayjs/dayjs.min.js" defer></script>
+    <script src="../js/vendor/dayjs/customParseFormat.js" defer></script>
+    <script src="../js/datas.js" defer></script>
+    <script src="../js/templates.js" defer></script>
+    <script src="../js/navegacao.js" defer></script>
+    <script src="../js/armazenamento.js" defer></script>
+    <script src="../js/eventos.js" defer></script>
+    <script src="../js/app.js" defer></script>
+</head>
+
+<body>
+
+
+<header>
+    <h1>Helping Hands</h1>
+
+    <input type="checkbox" id="menu-toggle" class="menu-toggle">
+
+    <label for="menu-toggle" class="menu-icon" aria-label="Open navigation menu" aria-expanded="false">
+        ☰
+    </label>
+
+    <nav class="main-nav">
+        <a href="#/home">Home</a>
+
+        <div class="dropdown">
+            <a href="#/projects">Projects</a>
+
+            <div class="submenu">
+                <a href="#/projects">Social Projects</a>
+                <a href="#/projects">Volunteer Opportunities</a>
+                <a href="#/projects">Donation Campaigns</a>
+            </div>
+        </div>
+
+        <a href="#/registration">Sign Up</a>
+    </nav>
+</header>
+
+    <main class="container">
+        <div id="app" tabindex="-1">
+ 
+        <section>
+            <h2>About Us</h2>
+
+            <picture>
+                <source srcset="../images/volunteers.webp" type="image/webp">
+
+                <img
+                    src="../images/volunteers.jpg"
+                    alt="Volunteers distributing food packages to families"
+                >
+            </picture>
+
+            <p>
+                Helping Hands is a nonprofit organization dedicated to supporting
+                vulnerable communities through social projects, donations and
+                volunteer work.
+            </p>
+        </section>
+
+        <section>
+            <h2>How You Can Help</h2>
+
+            <p>
+                You can support our work by becoming a volunteer or contributing
+                to one of our donation campaigns.
+            </p>
+
+            <a href="#/projects">View our projects</a>
+        </section>
+
+        <section>
+            <h2>Contact Us</h2>
+
+            <p>Email: contact@helpinghands.org</p>
+            <p>Phone: (84) 99999-9999</p>
+        </section>
+
+            </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Helping Hands</p>
+    </footer>
+
+</body>
+</html>

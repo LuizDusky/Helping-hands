@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projects - Helping Hands</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <script src="../js/vendor/dayjs/dayjs.min.js" defer></script>
+    <script src="../js/vendor/dayjs/customParseFormat.js" defer></script>
+    <script src="../js/datas.js" defer></script>
+    <script src="../js/templates.js" defer></script>
+    <script src="../js/navegacao.js" defer></script>
+    <script src="../js/armazenamento.js" defer></script>
+    <script src="../js/eventos.js" defer></script>
+    <script src="../js/app.js" defer></script>
+</head>
+
+<body>
+
+    <header>
+        <h1>Helping Hands</h1>
+
+        <input type="checkbox" id="menu-toggle" class="menu-toggle">
+
+        <label for="menu-toggle" class="menu-icon" aria-label="Open navigation menu" aria-expanded="false">
+            ☰
+        </label>
+
+        <nav class="main-nav">
+            <a href="#/home">Home</a>
+
+            <div class="dropdown">
+                <a href="#/projects">Projects</a>
+
+                <div class="submenu">
+                    <a href="#/projects">Social Projects</a>
+                    <a href="#/projects">Volunteer Opportunities</a>
+                    <a href="#/projects">Donation Campaigns</a>
+                </div>
+            </div>
+
+            <a href="#/registration">Sign Up</a>
+        </nav>
+    </header>
+
+    <main class="container">
+        <div id="app" tabindex="-1">
+
+        <h2>Our Projects</h2>
+
+        <section>
+            <h2>Social Projects</h2>
+
+            <div class="grid">
+                <article class="project-card">
+                    <div class="badge-group" aria-label="Project status">
+                        <span class="badge badge-success">Active</span>
+                        <span class="badge badge-error">High Priority</span>
+                    </div>
+
+                    <h3>Food Donation</h3>
+                    <p>
+                        This project distributes food packages to families
+                        experiencing financial difficulties.
+                    </p>
+                </article>
+
+                <article class="project-card">
+                    <div class="badge-group" aria-label="Project status">
+                        <span class="badge badge-success">Active</span>
+                        <span class="badge badge-warning">Accepting Volunteers</span>
+                    </div>
+
+                    <h3>Education Support</h3>
+                    <p>
+                        Volunteers provide educational activities and learning
+                        support to children in the community.
+                    </p>
+                </article>
+            </div>
+        </section>
+
+        <section>
+            <h2>Volunteer Opportunities</h2>
+
+            <p>
+                Volunteers can participate in food distribution, educational
+                activities and community events.
+            </p>
+
+            <a class="button" href="registration.html#registration-info">Become a volunteer</a>
+        </section>
+
+        <section>
+            <h2>Donation Campaigns</h2>
+
+            <p>
+                Donations help fund our social projects and provide essential
+                resources to families in need.
+            </p>
+
+            <p>
+                Contributions can include food, clothing and financial support.
+            </p>
+        </section>
+
+            </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Helping Hands</p>
+    </footer>
+
+</body>
+</html>
